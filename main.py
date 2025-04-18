@@ -60,10 +60,13 @@ def run_custom_size():
             print(f"✅ Com cache: {result} caminhos (tempo: {elapsed:.6f}s)")
 
         if mode in ("b", "c"):
-            start = time.time()
-            result = count_paths_no_cache(m, n)
-            elapsed = time.time() - start
-            print(f"🚫 Sem cache: {result} caminhos (tempo: {elapsed:.6f}s)")
+            if m > 15 or n > 15:
+                print("⚠️ Sem cache: valores muito grandes podem causar lentidão ou erro. Execução cancelada.")
+            else:
+                start = time.time()
+                result = count_paths_no_cache(m, n)
+                elapsed = time.time() - start
+                print(f"🚫 Sem cache: {result} caminhos (tempo: {elapsed:.6f}s)")
 
     except ValueError:
         print("Entrada inválida. Use apenas números inteiros.")
